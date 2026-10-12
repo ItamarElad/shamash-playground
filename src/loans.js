@@ -19,3 +19,11 @@ export function lateFee(dueDate, returnedDate) {
   }
   return Math.min(daysBetween(dueDate, returnedDate) * 2, 30);
 }
+
+/** Number of days a loan lasted, from loanDate to returnedDate. */
+export function loanDays(loan) {
+  if (!loan.returnedDate) {
+    throw new Error("Loan has no returnedDate");
+  }
+  return daysBetween(loan.loanDate, loan.returnedDate);
+}
