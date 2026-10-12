@@ -12,10 +12,11 @@ export function isLate(dueDate, returnedDate) {
   return daysBetween(dueDate, returnedDate) >= 0;
 }
 
-/** Late fee: 2 per late day, at most 30. */
-export function lateFee(dueDate, returnedDate) {
+/** Late fee: 2 per late day, at most 30; club members pay 50%. */
+export function lateFee(dueDate, returnedDate, isMember = false) {
   if (!isLate(dueDate, returnedDate)) {
     return 0;
   }
-  return Math.min(daysBetween(dueDate, returnedDate) * 2, 30);
+  const fee = Math.min(daysBetween(dueDate, returnedDate) * 2, 30);
+  return isMember ? fee / 2 : fee;
 }
