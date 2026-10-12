@@ -29,3 +29,12 @@ export function renewLoan(loan, days) {
   dueDate.setDate(dueDate.getDate() + days);
   return { ...loan, dueDate };
 }
+
+/** True when an unreturned loan is due today, tomorrow or the day after. */
+export function isDueSoon(loan, today) {
+  if (loan.returnedDate != null) {
+    return false;
+  }
+  const days = daysBetween(today, loan.dueDate);
+  return days >= 0 && days <= 2;
+}
