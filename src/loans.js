@@ -19,3 +19,13 @@ export function lateFee(dueDate, returnedDate) {
   }
   return Math.min(daysBetween(dueDate, returnedDate) * 2, 30);
 }
+
+/** Returns a copy of the loan with dueDate moved forward by a positive whole number of days. */
+export function renewLoan(loan, days) {
+  if (!Number.isInteger(days) || days <= 0) {
+    throw new Error("days must be a positive integer");
+  }
+  const dueDate = new Date(loan.dueDate);
+  dueDate.setDate(dueDate.getDate() + days);
+  return { ...loan, dueDate };
+}
