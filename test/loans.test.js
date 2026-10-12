@@ -15,3 +15,13 @@ test("a book returned early is not late", () => {
 test("late fee is capped at 30", () => {
   assert.equal(lateFee(d("2026-01-01"), d("2026-03-01")), 30);
 });
+
+test("late fee is 2 per late day", () => {
+  assert.equal(lateFee(d("2026-01-01"), d("2026-01-02")), 2);
+  assert.equal(lateFee(d("2026-01-01"), d("2026-01-03")), 4);
+});
+
+test("late fee is capped at 5", () => {
+  assert.equal(lateFee(d("2026-01-01"), d("2026-01-04")), 5);
+  assert.equal(lateFee(d("2026-01-01"), d("2026-01-21")), 5);
+});
