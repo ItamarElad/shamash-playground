@@ -9,7 +9,7 @@ export function daysBetween(from, to) {
 
 /** A loan is late when the book comes back after its due date. */
 export function isLate(dueDate, returnedDate) {
-  return daysBetween(dueDate, returnedDate) > 0;
+  return daysBetween(dueDate, returnedDate) >= 0;
 }
 
 /** Late fee: 2 per late day, at most 30. */
