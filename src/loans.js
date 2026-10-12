@@ -27,3 +27,12 @@ export function loanDays(loan) {
   }
   return daysBetween(loan.loanDate, loan.returnedDate);
 }
+
+/** Late fee as text: "₪<fee>", or "אין קנס" when there is no fee. */
+export function lateFeeText(loan) {
+  if (!loan.returnedDate) {
+    throw new Error("returnedDate is required");
+  }
+  const fee = lateFee(loan.dueDate, loan.returnedDate);
+  return fee > 0 ? `₪${fee}` : "אין קנס";
+}
