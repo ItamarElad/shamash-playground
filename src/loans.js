@@ -12,7 +12,7 @@ export function isLate(dueDate, returnedDate) {
   return daysBetween(dueDate, returnedDate) >= 0;
 }
 
-/** Late fee: 2 per late day, at most 30. */
+/** קנס איחור: 2 לכל יום איחור, ולכל היותר 30. */
 export function lateFee(dueDate, returnedDate) {
   if (!isLate(dueDate, returnedDate)) {
     return 0;
