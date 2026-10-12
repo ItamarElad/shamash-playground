@@ -12,10 +12,10 @@ export function isLate(dueDate, returnedDate) {
   return daysBetween(dueDate, returnedDate) >= 0;
 }
 
-/** Late fee: 2 per late day, at most 30. */
+/** Late fee: 5 per late day, at most 30. */
 export function lateFee(dueDate, returnedDate) {
   if (!isLate(dueDate, returnedDate)) {
     return 0;
   }
-  return Math.min(daysBetween(dueDate, returnedDate) * 2, 30);
+  return Math.min(daysBetween(dueDate, returnedDate) * 5, 30);
 }
