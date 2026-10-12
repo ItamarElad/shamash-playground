@@ -19,3 +19,8 @@ export function lateFee(dueDate, returnedDate) {
   }
   return Math.min(daysBetween(dueDate, returnedDate) * 2, 30);
 }
+
+/** A loan is free when there is no late fee. */
+export function isFree(dueDate, returnedDate) {
+  return lateFee(dueDate, returnedDate) === 0;
+}
